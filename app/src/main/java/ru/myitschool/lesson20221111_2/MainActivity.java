@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,15 +22,15 @@ TextView textView;
        // Log.i(LOG_TAG, "Creating View.....");
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textview);
-        textView.setText(printMatrix(matrix(5, 5)));
+        textView.setText(printMatrix(matrix(10, 10, 100)));
 
 
         Log.i(LOG_TAG, "View Created.....");
-        Log.d(LOG_TAG, printMatrix(matrix(5, 5)));
+        Log.d(LOG_TAG, printMatrix(matrix(5, 5, 100)));
     }
 
 
-    public int[][] matrix(int n, int m)
+    public int[][] matrix(int n, int m, int k)
     {
         int[][] array = new int [n][m];
         for (int i = 0; i < array.length; i++) {
@@ -47,7 +48,7 @@ TextView textView;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 array[i][j] = (int)(Math.random()*10);
-                result += array[i][j] + " ";
+                result += String.format("%4d ",array[i][j]);
             }
             result +="\n";
         }
@@ -94,5 +95,9 @@ TextView textView;
         Log.d(LOG_TAG,  "OnDestroy starting.....");
         super.onDestroy();
         Log.d(LOG_TAG,  "OnDestroy stop.....");
+    }
+
+    public void CreateNewMatrix(View view) {
+        textView.setText(printMatrix(matrix(10, 10, 10)));
     }
 }
