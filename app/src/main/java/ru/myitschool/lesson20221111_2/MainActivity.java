@@ -22,15 +22,15 @@ TextView textView;
        // Log.i(LOG_TAG, "Creating View.....");
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textview);
-        textView.setText(printMatrix(matrix(10, 10, 100)));
+        textView.setText(printMatrix(matrix(10, 10)));
 
 
         Log.i(LOG_TAG, "View Created.....");
-        Log.d(LOG_TAG, printMatrix(matrix(5, 5, 100)));
+        Log.d(LOG_TAG, printMatrix(matrix(5, 5)));
     }
 
 
-    public int[][] matrix(int n, int m, int k)
+    public static int[][] matrix(int n, int m)
     {
         int[][] array = new int [n][m];
         for (int i = 0; i < array.length; i++) {
@@ -42,15 +42,15 @@ TextView textView;
         return array;
     }
 
-    public String printMatrix(int[][] array)
+    public static String printMatrix(int[][] array)
     {
         String result = "\n";
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 array[i][j] = (int)(Math.random()*10);
-                result += String.format("%4d ",array[i][j]);
+                result += String.format("%d ",array[i][j]);
             }
-            result +="\n";
+          //  result +="\n";
         }
         return result;
     }
@@ -71,11 +71,10 @@ TextView textView;
 
     @Override
     protected void onResume() {
-        Log.d(LOG_TAG,  "OnResume starting.....");
+        Log.d(LOG_TAG, getString(R.string.nresume));
         super.onResume();
-        Log.d(LOG_TAG,  "OnResume stop.....");
+        Toast.makeText(this, getString(R.string.nresume), Toast.LENGTH_LONG).show();
     }
-
     @Override
     protected void onStop() {
         Log.d(LOG_TAG,  "OnStop starting.....");
@@ -98,6 +97,11 @@ TextView textView;
     }
 
     public void CreateNewMatrix(View view) {
-        textView.setText(printMatrix(matrix(10, 10, 10)));
+        textView.setText(printMatrix(matrix(10, 10)));
+    }
+
+    User user1 = new User("User1", 123456789);
+    public static String printUser(User user){
+        return user.getName() + " " + user.getPhone();
     }
 }
